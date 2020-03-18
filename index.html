@@ -8,6 +8,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>PennyWise | Home</title>
+
+    <!--This style is used for Add goal button to create a circular version of the bootstrap button-->
+    <style type="text/css"> 
+        .btn-circle.btn-sm { 
+            width: 30px; 
+            height: 30px; 
+            padding: 6px 0px; 
+            border-radius: 15px; 
+            font-size: 8px; 
+            text-align: center; 
+        } 
+        .btn-circle.btn-md { 
+            width: 50px; 
+            height: 50px; 
+            padding: 7px 10px; 
+            border-radius: 25px; 
+            font-size: 10px; 
+            text-align: center; 
+        } 
+        .btn-circle.btn-xl { 
+            width: 70px; 
+            height: 70px; 
+            padding: 10px 16px; 
+            border-radius: 35px; 
+            font-size: 12px; 
+            text-align: center; 
+        } 
+    </style> 
+
+
+
 </head>
 
 <body>
@@ -54,7 +85,7 @@
         <h1 class="display-4 mb-4">Goals</h1>
         <div class="row">
             <!---Sample goal 1-->
-            <div class="col-sm">
+            <div class="col-sm mb-3">
                 <div class="card">
                     <img src="https://via.placeholder.com/468x300?text=image-goal-here" class="card-img-top" alt="">
                     <div class="card-body">
@@ -70,7 +101,7 @@
             </div>
 
             <!---Sample goal 2-->
-            <div class="col-sm">
+            <div class="col-sm mb-3">
                 <div class="card" >
                     <img src="https://via.placeholder.com/468x300?text=image-goal-here" class="card-img-top" alt="">
                     <div class="card-body">
@@ -85,7 +116,14 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-sm mb-3 align-self-center">
+            <!--Add goal button-->
+            <div class="text-center">
+                <button type="button" class="btn btn-primary btn-circle btn-xl">
+                     <img src="src/icons/plus.svg" alt="add goal" class="img-fluid" >
+                </button>
+            </div>
+            </div>
         </div>
 
     </div>
