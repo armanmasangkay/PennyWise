@@ -254,27 +254,44 @@
                 return Math.floor(numOfDays/day)+1;
             }
 
+            /*
+             calculate the amount to save 
+            */
+
             function getMinimumAmountToSave(numOfDays,amount){
                 return Math.ceil(amount/numOfDays);
+            }
+
+            function updateValMinimumSavings(){
+                var goalAmount=$('#goalAmount').val();
+                var dateValue=$('#datepicker').val();
+                if (goalAmount!=''){
+                    var daysInterval=getDaysFromNow(dateValue);
+                    if(daysInterval<=0){
+                        $('#minimumSavings').val("Php. "+goalAmount);
+                    }else{
+                        var amountToSave=getMinimumAmountToSave(daysInterval,goalAmount);
+                        $('#minimumSavings').val("Php. " + amountToSave+" for " +daysInterval +" days");
+                    }
+                    
+                }
             }
 
             /*
             this function will check if the Amount field has a value 
             as well as the datepicker it will will then proceed to 
-            calcualte the minium amount
+            calculate the minium amount
             */
             
             $('#datepicker').change((e)=>{
-                var goalAmount=$('#goalAmount').val();
-                var dateValue=$('#datepicker').val();
-                if (goalAmount!=''){
-                    var daysInterval=getDaysFromNow(dateValue);
-                    console.log(daysInterval);
-                    var amountToSave=getMinimumAmountToSave(daysInterval,goalAmount);
-                    console.log("Amunt to save"+ amountToSave);
-                    $('#minimumSavings').val(amountToSave);
-                }
-            })
+                updateValMinimumSavings();
+            });
+
+            $('#goalAmount').keypress((e)=>{
+                updateValMinimumSavings();
+            });
+
+
 
         });
     </script>
