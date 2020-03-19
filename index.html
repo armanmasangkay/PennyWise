@@ -292,6 +292,7 @@
                         var amountToSave = getMinimumAmountToSave(daysInterval, goalAmount);
                         $('#minimumSavings').val("Php. " + amountToSave + " for " + daysInterval + " days");
                     }
+                    
 
                 }
             }
@@ -302,7 +303,7 @@
                 updateValMinimumSavings();
             });
 
-            $('#goalAmount').keypress((e) => {
+            $('#goalAmount').keyup((e) => {
                 updateValMinimumSavings();
             });
 
