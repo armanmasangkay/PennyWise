@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!--These are for the iconPicker widget styling-->
+    <link rel="stylesheet" href="src/css/bootstrap-iconpicker.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
+    <!--end iconWidget Styling-->
+
     <title>PennyWise | Home</title>
 
     <!--This style is used for Add goal button to create a circular version of the bootstrap button-->
@@ -64,20 +70,21 @@
 
                 <div class="modal-body">
                     <form>
-                        <!--For goal name input-->
-                        <div class="form-group">
-                            <label for="goalName">Goal name</label>
-                            <input type="text" class="form-control" id="goalName"
-                                placeholder="Enter the name of your goal" required>
-                            <small class="form-text text-muted">(required)</small>
+                        <div class="form-row mb-3">
+                            <div class="col-2">
+                                <label for="iconSelector">Icon</label>
+                                <button class="btn btn-primary" name="icon" role="iconpicker" id="iconSelector"></button>
+                            </div>
+                            <div class="col">
+                                <!--For goal name input-->
+                                <label for="goalName">Goal name</label>
+                                <input type="text" class="form-control" id="goalName"
+                                        placeholder="Enter the name of your goal" required>
+                                <small class="form-text text-muted">(required)</small>
+                            </div>
+                            
                         </div>
 
-                        <div class="form-group">
-                            <label for="goalDescription">Briefly describe your goal</label>
-                            <textarea class="form-control" id="goalDescription"
-                                placeholder="Explain what this goal is about"></textarea>
-                            <small class="form-text text-muted">(optional)</small>
-                        </div>
 
                         <div class="form-group">
                             <label for="goalAmount">Amount you have to save</label>
@@ -103,6 +110,13 @@
                             <input id="minimumSavings" type="text" class="form-control-plaintext" readonly value="00" />
                             <small class="form-text text-muted">This figure was calculated based on your specified
                                 target date</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="goalDescription">Briefly describe your goal</label>
+                            <textarea class="form-control" id="goalDescription"
+                                placeholder="Explain what this goal is about"></textarea>
+                            <small class="form-text text-muted">(optional)</small>
                         </div>
 
 
@@ -230,6 +244,9 @@
     <!--Required js file for the date time picker-->
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
+    <!--Required for the iconPicker widget-->
+    <script type="text/javascript" src="src/js/bootstrap-iconpicker.bundle.min.js"></script>
+
 
     <!--This line waits for the document to load so all the tooltips will render properly -->
     <script>
@@ -296,6 +313,15 @@
 
                 }
             }
+
+            $('#iconSelector').iconpicker({
+                iconset:'fontawesome',
+                icon:'fa-key',
+                rows: 5,
+                cols: 5,
+                placement:'top',
+            });
+
 
 
 
