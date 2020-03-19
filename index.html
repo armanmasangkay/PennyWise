@@ -12,8 +12,8 @@
     <!--Bootstrap CDN stylesheet-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-        <title>PennyWise | Home</title>
+
+    <title>PennyWise | Home</title>
 
     <!--This style is used for Add goal button to create a circular version of the bootstrap button-->
     <style type="text/css">
@@ -67,34 +67,44 @@
                         <!--For goal name input-->
                         <div class="form-group">
                             <label for="goalName">Goal name</label>
-                            <input type="text" class="form-control" id="goalName" placeholder="Enter the name of your goal" required>
+                            <input type="text" class="form-control" id="goalName"
+                                placeholder="Enter the name of your goal" required>
                             <small class="form-text text-muted">(required)</small>
                         </div>
 
                         <div class="form-group">
-                                <label for="goalDescription">Briefly describe your goal</label>
-                                <textarea class="form-control" id="goalDescription" placeholder="Explain what this goal is about"></textarea>
-                                <small class="form-text text-muted">(optional)</small>
+                            <label for="goalDescription">Briefly describe your goal</label>
+                            <textarea class="form-control" id="goalDescription"
+                                placeholder="Explain what this goal is about"></textarea>
+                            <small class="form-text text-muted">(optional)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="goalAmount">Amount you have to save</label>
-                            <input type="number" class="form-control" id="goalAmount" placeholder="Enter the amount of your goal" required>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Php.</span>  
+                                </div>
+                                <input type="number" class="form-control" id="goalAmount"
+                                    placeholder="Enter the amount of your goal" required>
+                                
+                            </div>
                             <small class="form-text text-muted">(required)</small>
                         </div>
 
                         <div class="form-group">
                             <label for="datePicker">When you want to achieve this?</label>
-                            <input id="datepicker" class="form-control" readonly/>
-                            <small class="form-text text-muted">Try be very realistic with your target date</small>
+                            <input id="datepicker" class="form-control" readonly />
+                            <small class="form-text text-muted">Try to be very realistic with your target date</small>
                         </div>
 
                         <div class="form-group">
-                                <label for="minimumSavings">Minimum amount to save everyday</label>
-                                <input id="minimumSavings" type="text" class="form-control-plaintext" readonly value="00"/>
-                                <small class="form-text text-muted">This figure was calculated based on your specified target date</small>
+                            <label for="minimumSavings">Minimum amount to save everyday</label>
+                            <input id="minimumSavings" type="text" class="form-control-plaintext" readonly value="00" />
+                            <small class="form-text text-muted">This figure was calculated based on your specified
+                                target date</small>
                         </div>
-                        
+
 
                     </form>
 
@@ -230,64 +240,69 @@
             this is for the datetime picker in the form for adding goals
             includes initialization of the datepicker
             */
-            var today=new Date();
-            var currentDate=(today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-            
+            var today = new Date();
+            var currentDate = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
+
             $('#datepicker').datepicker({
                 uiLibrary: 'bootstrap4',
-                format:'mm/dd/yyyy',
-                value:currentDate,
-                minDate:currentDate,
-              
-                
+                format: 'mm/dd/yyyy',
+                value: currentDate,
+                minDate: currentDate,
+
+
             });
 
             /*
             This will get the number of days from today
             up to the specified targetDate of the user
             */
-            function getDaysFromNow(targetDate){
-                var second=1000, minute=second*60, hour=minute*60, day=hour*24, week=day*7;
-                var currentDate=new Date();
-                targetDate=new Date(targetDate);
-                var numOfDays=targetDate-currentDate
-                return Math.floor(numOfDays/day)+1;
+            function getDaysFromNow(targetDate) {
+                var second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24, week = day * 7;
+                var currentDate = new Date();
+                targetDate = new Date(targetDate);
+                var numOfDays = targetDate - currentDate
+                return Math.floor(numOfDays / day) + 1;
             }
 
             /*
              calculate the amount to save 
             */
 
-            function getMinimumAmountToSave(numOfDays,amount){
-                return Math.ceil(amount/numOfDays);
+            function getMinimumAmountToSave(numOfDays, amount) {
+                return Math.ceil(amount / numOfDays);
             }
 
-            function updateValMinimumSavings(){
-                var goalAmount=$('#goalAmount').val();
-                var dateValue=$('#datepicker').val();
-                if (goalAmount!=''){
-                    var daysInterval=getDaysFromNow(dateValue);
-                    if(daysInterval<=0){
-                        $('#minimumSavings').val("Php. "+goalAmount);
-                    }else{
-                        var amountToSave=getMinimumAmountToSave(daysInterval,goalAmount);
-                        $('#minimumSavings').val("Php. " + amountToSave+" for " +daysInterval +" days");
+            //updates Minimum savings text field
+            /*
+           this function will check if the Amount field has a value 
+           as well as the datepicker it will will then proceed to 
+           calculate the minium amount
+           */
+            function updateValMinimumSavings() {
+                var goalAmount = $('#goalAmount').val();
+                var dateValue = $('#datepicker').val();
+                if (goalAmount != '') {
+                    var daysInterval = getDaysFromNow(dateValue);
+                    /*
+                      use the goalAmount for days in the present and calculate the days interval that are greater than 1
+                    */
+                    if (daysInterval <= 0) {
+                        $('#minimumSavings').val("Php. " + goalAmount);
+                    } else {
+                        var amountToSave = getMinimumAmountToSave(daysInterval, goalAmount);
+                        $('#minimumSavings').val("Php. " + amountToSave + " for " + daysInterval + " days");
                     }
-                    
+
                 }
             }
 
-            /*
-            this function will check if the Amount field has a value 
-            as well as the datepicker it will will then proceed to 
-            calculate the minium amount
-            */
-            
-            $('#datepicker').change((e)=>{
+
+
+            $('#datepicker').change((e) => {
                 updateValMinimumSavings();
             });
 
-            $('#goalAmount').keypress((e)=>{
+            $('#goalAmount').keypress((e) => {
                 updateValMinimumSavings();
             });
 
@@ -296,10 +311,6 @@
         });
     </script>
 
-
-    <script>
-        
-    </script>
 </body>
 
 </html>
