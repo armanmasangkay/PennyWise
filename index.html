@@ -324,20 +324,25 @@
 
             function addNewGoal(){
                 //Get Values from Modal
+                var goalIconValue = document.getElementById("iconSelector").classList;
+                console.log(goalIconValue[0]);
                 var goalNameValue = document.getElementById("goalName").value;
                 var goalDescriptionValue = document.getElementById("goalDescription").value;
                 var goalAmountValue = document.getElementById("goalAmount").value;
 
                 //Create Elements
-                var card = document.createElement("div");
-                card.classList.add("col-sm","mb-3");
-
                 var cardFrame = document.createElement("div");
-                cardFrame.classList.add("card");
+                cardFrame.classList.add("col-sm","mb-3");
 
-                var imageGoal = document.createElement("img");
-                imageGoal.setAttribute("src", "https://via.placeholder.com/468x300?text=image-goal-here");
-                imageGoal.setAttribute("class", "card-img-top");
+                var card = document.createElement("div");
+                card.classList.add("card");
+
+                var iconGoal = document.createElement("i");
+                for(var x = 0 ; x < goalIconValue.length; x++)
+                {
+                    iconGoal.classList.add(goalIconValue[x]);
+                }
+                
 
                 var cardBody = document.createElement("div");
                 cardBody.classList.add("card-body");
@@ -372,9 +377,9 @@
                 addMoneyButton.appendChild(addMoneyButtonText);
 
                 //Set Everything
-                card.appendChild(cardFrame);
-                cardFrame.appendChild(imageGoal);
-                cardFrame.appendChild(cardBody);
+                cardFrame.appendChild(card);
+                card.appendChild(iconGoal);
+                card.appendChild(cardBody);
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(cardDescription);
                 cardBody.appendChild(fourthDiv);
@@ -385,7 +390,7 @@
                 //Setup to MainDiv
                 var MainNode = document.getElementById("goal-items");
                 var AppendBefore = document.getElementById("AddButton");
-                MainNode.insertBefore(card,AppendBefore);
+                MainNode.insertBefore(cardFrame,AppendBefore);
             }
 
             
