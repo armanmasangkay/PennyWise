@@ -325,7 +325,6 @@
             function addNewGoal(){
                 //Get Values from Modal
                 var goalIconValue = document.getElementById("iconSelector").classList;
-                console.log(goalIconValue[0]);
                 var goalNameValue = document.getElementById("goalName").value;
                 var goalDescriptionValue = document.getElementById("goalDescription").value;
                 var goalAmountValue = document.getElementById("goalAmount").value;
@@ -391,6 +390,7 @@
                 var MainNode = document.getElementById("goal-items");
                 var AppendBefore = document.getElementById("AddButton");
                 MainNode.insertBefore(cardFrame,AppendBefore);
+
             }
 
             
@@ -415,6 +415,7 @@
 
             $('#addGoalButton').click((e) => {
                 addNewGoal();
+                $("#addGoalModal").modal('hide');
             });
 
         });
