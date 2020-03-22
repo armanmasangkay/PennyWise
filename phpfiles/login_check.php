@@ -17,6 +17,8 @@ function checkLoginInfo($username,$password){
 
     foreach($stmt->fetchAll() as $k=>$v) {
         if ($v['username']==$username && $v['password']==$password){
+            session_start();
+            $_SESSION['login']="1";
             return true;
         }else{
             return false;

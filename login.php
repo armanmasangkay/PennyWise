@@ -1,3 +1,15 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['login']) && $_SESSION['login']=='1'){
+        header ('Location: index.php');
+    }
+
+    
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +38,17 @@
           <!--Login form row-->
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
+               <?php
+                    if ($_SESSION['not_logged']=="1"){
+                        echo "<div class='alert alert-warning' role='alert'>
+                                You must log in first!
+                            </div>";
+                    }
+
+                ?>
                
+
+
                 <div class="alert alert-danger text-center" role="alert" style="display:none" id="errorMessage">
                         Invalid username/password
                 </div>
@@ -85,7 +107,7 @@
                         var jsonData=JSON.parse(data);
                         
                         if (jsonData.success ==1){
-                            window.location.replace('index.html');
+                            window.location.replace('index.php');
                         } else {
                             $("#errorMessage").css("display",'');
                         }

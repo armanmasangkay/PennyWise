@@ -1,12 +1,5 @@
 <?php
-
-session_start();
-
-if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
-
-header ("Location: login.php");
-
-}
+    include "phpfiles/session_validator.php";
 ?>
 
 <!DOCTYPE html>
@@ -172,7 +165,7 @@ header ("Location: login.php");
                         Arman Masangkay</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropDown">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="phpfiles/logout.php">
                         <img src="src/icons/box-arrow-right.svg" alt="" width="22" height="22">
                         Log me out
                     </a>
