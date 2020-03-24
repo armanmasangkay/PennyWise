@@ -101,7 +101,7 @@
 
                         <div class="form-group">
                             <label for="datePicker">When you want to achieve this?</label>
-                            <input id="datepicker" class="form-control" readonly />
+                            <input id="datepicker"  class="form-control" readonly />
                             <small class="form-text text-muted">Try to be very realistic with your target date</small>
                         </div>
 
@@ -322,22 +322,158 @@
                 }
             }
 
+            let GoalData = {
+                GoalIcon : null,
+                GoalTitle : null,
+                GoalDescription : null,
+                GoalTargetAmount :null,
+                GoalTargetDate : null,
+                GoalMinimumAmmount : null
+            };
+
+            let GoalCard = {
+                Frame : null,
+                CardFrame : null,
+                CardHeader: null,
+                CardIcon: null,
+                CardTitle: null,
+                CardBody: null,
+                CardDescription: null,
+                ProgressBarFrame: null,
+                ProgressBar:null,
+                ProgressBarPercent: null,
+                Button: null
+            }
+
+            let CardSupport = {
+                TempIconValue :null,
+
+            }
+
+            function AddNewGoal()
+            {
+                /* Assign all data to Object */
+                GoalData.GoalTitle = document.getElementById("goalName").value;
+                GoalData.GoalDescription = document.getElementById("goalDescription").value;
+                GoalData.GoalTargetAmount = document.getElementById("goalAmount").value;
+                GoalData.GoalTargetDate = document.getElementById("datepicker").value;
+                GoalData.GoalMinimumAmmount = document.getElementById("minimumSavings").value;
+
+                /* 
+                 * Split the value of GoalIcon and remove the space.
+                 * The Value will be stored in this variable in Array Form
+                 */
+                CardSupport.TempIconValue = GoalData.GoalIcon.split(' ');
+
+                /*
+                 * Assign value for Frame
+                 * Then Add attribute, class with the specified value
+                 */
+                GoalCard.Frame = document.createElement("div");
+                GoalCard.Frame.classList.add("col-sm","mb-3");
+
+                /*
+                 * Assign value for Card Frame
+                 * Then add Attribute
+                 */
+                GoalCard.CardFrame = document.createElement("div");
+                GoalCard.CardFrame.classList.add("card");
+
+                /*
+                 * Assign value for Card Header
+                 * Then add Attribute
+                 */
+                GoalCard.CardHeader = document.createElement("div");
+                GoalCard.cardHeader.classList.add("card-header");
+
+                /*
+                 * Assign value for Card Title
+                 * Then Declare a variable for Text of CardTitle                
+                 */
+                GoalCard.CardTitle = document.createElement("h4");
+                var titleText = document.createTextNode(GoalData.GoalTitle);
+
+                /*
+                 * Variable title appended to CardTitle
+                 */
+                GoalCard.CardTitle.appendChild(titleText);
+
+                /*
+                * Create element i
+                * Assign element i class with Goal Icon
+                */
+                GoalCard.CardIcon = document.createElement("i");
+                for(var x = 0 ;x < CardSupportTempIconValue.length ; x++)
+                {
+                    GoalCard.CardIcon.classList.add(CardSupport.TempIconValue[x]);
+                }
+
+                /*
+                 * Create element div for Card Body
+                */
+                GoalCard.CardBody = document.createElement("div");
+                GoalCard.CardBody.classList.add("card-body");
+
+                /*
+                 * assign element span for Goal Description
+                */
+                GoalCard.CardDescription = document.createElement("span");
+                var descriptionText = document.createTextNode(GoalData.GoalDescription);
+                /*
+                 * append descriptionText to Card Description
+                */
+                GoalCard.CardDescription.appendChild(descriptionText);
+
+                /*
+                 *
+                */
+                GoalCard.ProgressBarFrame = document.createElement("div");
+                GoalCard.ProgressBarFrame.classList("progress");
+
+                /*
+                 *
+                */
+                GoalCard.ProgressBar = document.createElement("div");
+                GoalCard.ProgressBar.setAttribute("class", "progress-bar progress-bar-striped progress-bar-animated");
+                GoalCard.ProgressBar.setAttribute("role","progressbar");
+                GoalCard.ProgressBar.setAttribute("style","width: 50%");
+                GoalCard.ProgressBar.setAttribute("aria-valuenow","0");
+                GoalCard.ProgressBar.setAttribute("aria-valuemin","0");
+                GoalCard.ProgressBar.setAttribute("aria-valuemax","100");
+            }
+
+            
             function addNewGoal(){
-                //Get Values from Modal
-                var goalIconValue = document.getElementById("iconSelector").classList;
-                var goalNameValue = document.getElementById("goalName").value;
-                var goalDescriptionValue = document.getElementById("goalDescription").value;
-                var goalAmountValue = document.getElementById("goalAmount").value;
+                
 
-                //Create Elements
+                //split goalIconValue
+                var newGoalIconValue = goalIconValue.split(' ');
+
+                //Create Element for Frame
+                var Frame = document.createElement("div");
+                Frame.classList.add("col-sm","mb-3");
+
+                //Create Element div for Card Frame
                 var cardFrame = document.createElement("div");
-                cardFrame.classList.add("col-sm","mb-3");
+                cardFrame.classList.add("card");
 
-                var card = document.createElement("div");
-                card.classList.add("card");
+                
+                
+                
+                //Create element for Card Header
+                var cardHeader = document.createElement("div");
+                cardHeader.classList.add("card-header");
+                //Create elements, items for Card Header
+                var GoalTitle= document.createElement("h5");
 
+
+                /*
+                * Create element i
+                * Assign element i class with Goal Icon
+                */
+                console.log(newGoalIconValue);
                 var iconGoal = document.createElement("i");
-                for(var x = 0 ; x < goalIconValue.length; x++)
+                for(var x = 0 ; x < newGoalIconValue.length; x++)
                 {
                     iconGoal.classList.add(goalIconValue[x]);
                 }
@@ -393,7 +529,11 @@
 
             }
 
-            
+            $("#iconSelector").on('change',function(e){
+                    GoalData.GoalIcon = e.icon;
+                    //console.log(GoalData.GoalIcon);
+                });
+
             $('#iconSelector').iconpicker({
                 iconset:'fontawesome',
                 icon:'fa-key',
