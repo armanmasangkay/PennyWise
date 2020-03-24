@@ -1,3 +1,7 @@
+<?php
+    include "phpfiles/session_validator.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,7 +166,7 @@
                         Arman Masangkay</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropDown">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="phpfiles/logout.php">
                         <img src="src/icons/box-arrow-right.svg" alt="" width="22" height="22">
                         Log me out
                     </a>
