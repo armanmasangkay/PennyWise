@@ -184,8 +184,8 @@
     <div class="container">
 
         <h1 class="display-4 mb-4">Goals</h1>
-        <div class="row">
-            <!--Sample goal cards-->
+        <div class="row" id="goal-items">
+            <!---Sample goal 1-->
             <div class="col-sm mb-3">
                 <div class="card">
                     <div class="card-header">
@@ -325,6 +325,218 @@
                 }
             }
 
+            let GoalData = {
+                GoalIcon : null,
+                GoalTitle : null,
+                GoalDescription : null,
+                GoalTargetAmount :null,
+                GoalTargetDate : null,
+                GoalMinimumAmmount : null
+            };
+
+            let GoalCard = {
+                Frame : null,
+                CardFrame : null,
+                CardHeader: null,
+                CardIcon: null,
+                CardTitle: null,
+                CardBody: null,
+                CardDescription: null,
+                ProgressBarFrame: null,
+                ProgressBar:null,
+                ProgressBarPercent: null,
+                Button: null
+            }
+
+            let CardSupport = {
+                TempIconValue :null,
+
+            }
+
+            function AddNewGoal()
+            {
+                /* Assign all data to Object */
+                GoalData.GoalTitle = document.getElementById("goalName").value;
+                GoalData.GoalDescription = document.getElementById("goalDescription").value;
+                GoalData.GoalTargetAmount = document.getElementById("goalAmount").value;
+                GoalData.GoalTargetDate = document.getElementById("datepicker").value;
+                GoalData.GoalMinimumAmmount = document.getElementById("minimumSavings").value;
+
+                /* 
+                 * Split the value of GoalIcon and remove the space.
+                 * The Value will be stored in this variable in Array Form
+                 */
+                CardSupport.TempIconValue = GoalData.GoalIcon.split(' ');
+
+                /*
+                 * Assign value for Frame
+                 * Then Add attribute, class with the specified value
+                 */
+                GoalCard.Frame = document.createElement("div");
+                GoalCard.Frame.classList.add("col-sm","mb-3");
+
+                /*
+                 * Assign value for Card Frame
+                 * Then add Attribute
+                 */
+                GoalCard.CardFrame = document.createElement("div");
+                GoalCard.CardFrame.classList.add("card");
+
+                /*
+                 * Assign value for Card Header
+                 * Then add Attribute
+                 */
+                GoalCard.CardHeader = document.createElement("div");
+                GoalCard.cardHeader.classList.add("card-header");
+
+                /*
+                 * Assign value for Card Title
+                 * Then Declare a variable for Text of CardTitle                
+                 */
+                GoalCard.CardTitle = document.createElement("h4");
+                var titleText = document.createTextNode(GoalData.GoalTitle);
+
+                /*
+                 * Variable title appended to CardTitle
+                 */
+                GoalCard.CardTitle.appendChild(titleText);
+
+                /*
+                * Create element i
+                * Assign element i class with Goal Icon
+                */
+                GoalCard.CardIcon = document.createElement("i");
+                for(var x = 0 ;x < CardSupportTempIconValue.length ; x++)
+                {
+                    GoalCard.CardIcon.classList.add(CardSupport.TempIconValue[x]);
+                }
+
+                /*
+                 * Create element div for Card Body
+                */
+                GoalCard.CardBody = document.createElement("div");
+                GoalCard.CardBody.classList.add("card-body");
+
+                /*
+                 * assign element span for Goal Description
+                */
+                GoalCard.CardDescription = document.createElement("span");
+                var descriptionText = document.createTextNode(GoalData.GoalDescription);
+                /*
+                 * append descriptionText to Card Description
+                */
+                GoalCard.CardDescription.appendChild(descriptionText);
+
+                /*
+                 *
+                */
+                GoalCard.ProgressBarFrame = document.createElement("div");
+                GoalCard.ProgressBarFrame.classList("progress");
+
+                /*
+                 *
+                */
+                GoalCard.ProgressBar = document.createElement("div");
+                GoalCard.ProgressBar.setAttribute("class", "progress-bar progress-bar-striped progress-bar-animated");
+                GoalCard.ProgressBar.setAttribute("role","progressbar");
+                GoalCard.ProgressBar.setAttribute("style","width: 50%");
+                GoalCard.ProgressBar.setAttribute("aria-valuenow","0");
+                GoalCard.ProgressBar.setAttribute("aria-valuemin","0");
+                GoalCard.ProgressBar.setAttribute("aria-valuemax","100");
+            }
+
+            
+            function addNewGoal(){
+                
+
+                //split goalIconValue
+                var newGoalIconValue = goalIconValue.split(' ');
+
+                //Create Element for Frame
+                var Frame = document.createElement("div");
+                Frame.classList.add("col-sm","mb-3");
+
+                //Create Element div for Card Frame
+                var cardFrame = document.createElement("div");
+                cardFrame.classList.add("card");
+
+                
+                
+                
+                //Create element for Card Header
+                var cardHeader = document.createElement("div");
+                cardHeader.classList.add("card-header");
+                //Create elements, items for Card Header
+                var GoalTitle= document.createElement("h5");
+
+
+                /*
+                * Create element i
+                * Assign element i class with Goal Icon
+                */
+                console.log(newGoalIconValue);
+                var iconGoal = document.createElement("i");
+                for(var x = 0 ; x < newGoalIconValue.length; x++)
+                {
+                    iconGoal.classList.add(goalIconValue[x]);
+                }
+                
+
+                var cardBody = document.createElement("div");
+                cardBody.classList.add("card-body");
+
+                var cardTitle = document.createElement("h5");
+                var cardTitleText = document.createTextNode(goalNameValue);
+                cardTitle.appendChild(cardTitleText);
+
+                var cardDescription = document.createElement("p");
+                var cardDescriptionText = document.createTextNode(goalDescriptionValue);
+                cardDescription.appendChild(cardDescriptionText);
+
+                var fourthDiv = document.createElement("div");
+                fourthDiv.setAttribute("class","progress");
+
+                var progressBar = document.createElement("div");
+                progressBar.setAttribute("class", "progress-bar progress-bar-striped progress-bar-animated");
+                progressBar.setAttribute("role","progressbar");
+                progressBar.setAttribute("style","width: 50%");
+                progressBar.setAttribute("aria-valuenow","0");
+                progressBar.setAttribute("aria-valuemin","0");
+                progressBar.setAttribute("aria-valuemax",goalAmountValue);
+
+                var progressBarText = document.createElement("span");
+                var progressBarTextValue = document.createTextNode("0/" + goalAmountValue);
+                progressBarText.appendChild(progressBarTextValue);
+
+                var addMoneyButton = document.createElement("a");
+                addMoneyButton.classList.add("btn","btn-outline-success","btn-lg", "btn-block","mt-5");
+
+                var addMoneyButtonText = document.createTextNode("Add Money");
+                addMoneyButton.appendChild(addMoneyButtonText);
+
+                //Set Everything
+                cardFrame.appendChild(card);
+                card.appendChild(iconGoal);
+                card.appendChild(cardBody);
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(cardDescription);
+                cardBody.appendChild(fourthDiv);
+                cardBody.appendChild(addMoneyButton);
+                fourthDiv.appendChild(progressBar);
+                progressBar.appendChild(progressBarText);
+
+                //Setup to MainDiv
+                var MainNode = document.getElementById("goal-items");
+                var AppendBefore = document.getElementById("AddButton");
+                MainNode.insertBefore(cardFrame,AppendBefore);
+
+            }
+
+            $("#iconSelector").on('change',function(e){
+                    GoalData.GoalIcon = e.icon;
+                    //console.log(GoalData.GoalIcon);
+                });
+
             $('#iconSelector').iconpicker({
                 iconset:'fontawesome',
                 icon:'fa-key',
@@ -344,7 +556,10 @@
                 updateValMinimumSavings();
             });
 
-
+            $('#addGoalButton').click((e) => {
+                addNewGoal();
+                $("#addGoalModal").modal('hide');
+            });
 
         });
     </script>
