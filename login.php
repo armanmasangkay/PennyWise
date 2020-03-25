@@ -41,7 +41,7 @@
 
                     // setup session("not_logged"), because after logout the session will destroyed
                     // and it will unidentified
-                    $_SESSION['not_logged'] = 1;
+                  
                     if ($_SESSION['not_logged']=="1"){
                         echo "<div class='alert alert-warning' role='alert'>
                                 You must log in first!
