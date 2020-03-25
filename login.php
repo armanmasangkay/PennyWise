@@ -5,7 +5,6 @@
         header ('Location: index.php');
     }
 
-    
 
 
 ?>
@@ -39,6 +38,10 @@
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
                <?php
+
+                    // setup session("not_logged"), because after logout the session will destroyed
+                    // and it will unidentified
+                    $_SESSION['not_logged'] = 1;
                     if ($_SESSION['not_logged']=="1"){
                         echo "<div class='alert alert-warning' role='alert'>
                                 You must log in first!
@@ -101,10 +104,10 @@
     
                 $.ajax({
                     type: "POST",
-                    url: "/phpfiles/login_check.php",
+                    url: "./phpfiles/login_check.php",
                     data: {'username':username,'password':password},
                     success : function(data){
-                        var jsonData=JSON.parse(data);
+                        let jsonData=JSON.parse(data);
                         
                         if (jsonData.success ==1){
                             window.location.replace('index.php');
