@@ -59,9 +59,10 @@
             flex-wrap: wrap;
         }
 
-        #goal-items div{
+        #goal-items #items{
             flex: 0 0 33.333333%;
         }
+
     </style>
 
 
@@ -196,7 +197,7 @@
         <h1 class="display-4 mb-4">Goals</h1>
         <div class="row" id="goal-items">
             <!---Sample goal 1-->
-            <div class="col-sm mb-3">
+            <div class="col-sm mb-3" id="items">
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-heart mr-2 text-danger"></i>
@@ -215,7 +216,7 @@
                 </div>
             </div>
             
-            <div class="col-sm mb-3">
+            <div class="col-sm mb-3" id="items">
                     <div class="card">
                         <div class="card-header">
                             <i class="fa fa-shopping-basket mr-2 text-danger"></i>
@@ -360,6 +361,12 @@
 
             function AddNewGoal(Icon,Title,Description,CurrentAmount)
             {
+                /*
+                 * Make Goal Clickable
+                 */
+                 let GoalClickable = document.createElement("a");
+                 GoalClickable.setAttribute("href","#");
+                 GoalClickable.setAttribute("style","color:black; text-decoration: none !important;");
 
                 /* 
                  * Split the value of GoalIcon and remove the space.
@@ -373,6 +380,7 @@
                  */
                 GoalCard.Frame = document.createElement("div");
                 GoalCard.Frame.classList.add("col-sm","mb-3");
+                GoalCard.Frame.setAttribute("id","items");
 
                 /*
                  * Assign value for Card Frame
@@ -440,8 +448,8 @@
                 GoalCard.ProgressBar = document.createElement("div");
                 GoalCard.ProgressBar.setAttribute("class", "progress-bar progress-bar-striped progress-bar-animated");
                 GoalCard.ProgressBar.setAttribute("role","progressbar");
-                GoalCard.ProgressBar.setAttribute("style","width: "+CurrentAmount);
-                GoalCard.ProgressBar.setAttribute("aria-valuenow","0");
+                GoalCard.ProgressBar.setAttribute("style","width: "+CurrentAmount+"%");
+                GoalCard.ProgressBar.setAttribute("aria-valuenow",CurrentAmount);
                 GoalCard.ProgressBar.setAttribute("aria-valuemin","0");
                 GoalCard.ProgressBar.setAttribute("aria-valuemax","100");
 
@@ -455,6 +463,7 @@
                  * Add "Add Money" Button
                  */
                 GoalCard.Button = document.createElement("a");
+                GoalCard.Button.setAttribute("href","#");
                 GoalCard.Button.classList.add("btn","btn-outline-success","btn-lg", "btn-block","mt-5");
                 GoalCard.Button.innerHTML = "Add money";
 
@@ -462,9 +471,9 @@
                 /*
                  * Appending all Items
                  */
-
                 GoalCard.Frame.appendChild(GoalCard.CardFrame);
-                GoalCard.CardFrame.appendChild(GoalCard.CardHeader);
+                GoalCard.CardFrame.appendChild(GoalClickable);
+                GoalClickable.appendChild(GoalCard.CardHeader);
                 GoalCard.CardHeader.appendChild(GoalCard.CardIcon);
                 GoalCard.CardHeader.appendChild(GoalCard.CardTitle);
                 GoalCard.CardFrame.appendChild(GoalCard.CardBody);
@@ -502,7 +511,7 @@
                 GoalData.GoalTitle = document.getElementById("goalName").value;
                 GoalData.GoalDescription = document.getElementById("goalDescription").value;
                 //console.log(GoalData.GoalDescription);
-                AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"25");
+                AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"100");
                 /*
                  * This will be useful, later on.
                  */

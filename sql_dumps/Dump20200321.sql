@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `savinggoal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `savinggoal` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `savinggoal`;
 -- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
 --
@@ -30,7 +30,7 @@ CREATE TABLE `User` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   PRIMARY KEY (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
