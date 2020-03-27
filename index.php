@@ -134,7 +134,7 @@
                         </div>
 
 
-                    </form>
+                  
 
 
                 </div>
@@ -143,6 +143,8 @@
                     <!--Footer information-->
                     <input type="button" value="Add Goal" class="btn btn-primary" id="addGoalButton">
                 </div>
+
+                </form>
 
             </div>
         </div>
