@@ -464,7 +464,7 @@
                  */
                 GoalCard.Button = document.createElement("a");
                 GoalCard.Button.setAttribute("href","#");
-                GoalCard.Button.classList.add("btn","btn-outline-success","btn-lg", "btn-block","mt-5");
+                GoalCard.Button.classList.add("btn","btn-outline-success", "btn-block","mt-5");
                 GoalCard.Button.innerHTML = "Add money";
 
 
@@ -511,7 +511,7 @@
                 GoalData.GoalTitle = document.getElementById("goalName").value;
                 GoalData.GoalDescription = document.getElementById("goalDescription").value;
                 //console.log(GoalData.GoalDescription);
-                AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"100");
+                AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"0");
                 /*
                  * This will be useful, later on.
                  */
