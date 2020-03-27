@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form name="goal-registration">
                         <div class="form-row mb-3">
                             <div class="col-2">
                                 <label for="iconSelector">Icon</label>
@@ -92,7 +92,7 @@
                             <div class="col">
                                 <!--For goal name input-->
                                 <label for="goalName">Goal name</label>
-                                <input type="text" class="form-control" id="goalName"
+                                <input type="text" class="form-control" id="goalName" name="goalName"
                                         placeholder="Enter the name of your goal" required>
                                 <small class="form-text text-muted">(required)</small>
                             </div>
@@ -102,11 +102,11 @@
 
                         <div class="form-group">
                             <label for="goalAmount">Amount you have to save</label>
-                            <div class="input-group">
+                            <div class="input-group" id="goal-amount-frame">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Php.</span>  
                                 </div>
-                                <input type="number" class="form-control" id="goalAmount"
+                                <input type="number" class="form-control" id="goalAmount" name="goalAmount"
                                     placeholder="Enter the amount of your goal" required>
                                 
                             </div>
@@ -336,6 +336,53 @@
                 }
             }
 
+            function ValidateForm()
+            {
+                var FormValidated = true;
+
+                if(GoalData.GoalTargetAmount == "")
+                {
+                    let goaltargetamount = document.getElementById("goal-amount-frame");
+                    goaltargetamount.classList.add("border","border-danger");
+                    let targetamount = document.getElementById("goalAmount");
+                    targetamount.focus();
+                    FormValidated = false;
+                }
+                else
+                {
+                    let goaltargetamount = document.getElementById("goal-amount-frame");
+                    goaltargetamount.classList.remove("border","border-danger");
+                }
+
+                if(GoalData.GoalTitle == "")
+                {
+                    let goalname = document.getElementById("goalName");
+                    goalname.classList.add("border","border-danger");
+                    goalname.focus();
+                    FormValidated = false;
+                }
+                else
+                {
+                    let goalname = document.getElementById("goalName");
+                    goalname.classList.remove("border","border-danger");
+                }
+
+                if(GoalData.GoalIcon === "empty")
+                {
+                    let goalicon = document.getElementById("iconSelector");
+                    goalicon.classList.add("border","border-danger");
+                    goalicon.focus();
+                    FormValidated = false;
+                }
+                else
+                {
+                    let goalicon = document.getElementById("iconSelector");
+                    goalicon.classList.remove("border","border-danger");
+                }
+
+                return FormValidated;
+            }
+
             let GoalData = {
                 GoalIcon : null,
                 GoalTitle : null,
@@ -510,29 +557,43 @@
                 /* Assign all data to Object */
                 GoalData.GoalTitle = document.getElementById("goalName").value;
                 GoalData.GoalDescription = document.getElementById("goalDescription").value;
-                //console.log(GoalData.GoalDescription);
-                AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"100");
+                GoalData.GoalTargetAmount = document.getElementById("goalAmount").value;
                 /*
                  * This will be useful, later on.
                  */
-               // GoalData.GoalTargetAmount = document.getElementById("goalAmount").value;
-               // GoalData.GoalTargetDate = document.getElementById("datepicker").value;
-               // GoalData.GoalMinimumAmmount = document.getElementById("minimumSavings").value;
+                // GoalData.GoalTargetDate = document.getElementById("datepicker").value;
+                // GoalData.GoalMinimumAmmount = document.getElementById("minimumSavings").value;
 
-
-                $("#addGoalModal").modal('hide');
-
-
-                document.getElementById("goalName").value = "";
-                document.getElementById("goalDescription").value = "";
-                document.getElementById("goalAmount").value = "";
-
-                let divlength = document.getElementById("goal-items").childElementCount;
-
-                if(divlength > 5)
+                if(GoalData.GoalDescription == "")
                 {
-                    $("#AddButton").hide();
+                    GoalData.GoalDescription = "No Description";
                 }
+
+                var request = ValidateForm();
+                //console.log(request);
+                if(request == true)
+                {
+                
+                    //console.log(GoalData.GoalDescription);
+                    AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"100");
+
+                        /*
+                        * This Code will hide the modal
+                        */
+                        $("#addGoalModal").modal('hide');
+
+                        document.getElementById("goalName").value = "";
+                        document.getElementById("goalDescription").value = "";
+                        document.getElementById("goalAmount").value = "";
+
+                        let divlength = document.getElementById("goal-items").childElementCount;
+
+                        if(divlength > 5)
+                        {
+                            $("#AddButton").hide();
+                        } 
+                }
+                
             });
 
             $("#goal-items").ready(()=>{
