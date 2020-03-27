@@ -273,6 +273,7 @@
     <!--This line waits for the document to load so all the tooltips will render properly -->
     <script>
         $(document).ready(function () {
+
             $('[data-toggle="tooltip"]').tooltip({ 'placement': 'top' });
 
             /*
@@ -290,6 +291,7 @@
 
 
             });
+
 
             /*
             This will get the number of days from today
@@ -539,6 +541,18 @@
                 MainNode.insertBefore(GoalCard.Frame,AppendBefore);
             }
 
+            function ClearAll()
+            {
+                $("#iconSelector").iconpicker('setIcon','empty');
+                document.getElementById("goalName").value = "";
+                document.getElementById("goalDescription").value = "";
+                document.getElementById("goalAmount").value = "";
+                document.getElementById("minimumSavings").value = "00";
+                
+                var todayDate = new Date();
+                document.getElementById("datepicker").value = (todayDate.getMonth() + 1) + "/" + todayDate.getDate() + "/"+ todayDate.getFullYear();
+            }
+
 
             $("#iconSelector").on('change',function(e){
                     GoalData.GoalIcon = e.icon;
@@ -558,6 +572,7 @@
                 GoalData.GoalTitle = document.getElementById("goalName").value;
                 GoalData.GoalDescription = document.getElementById("goalDescription").value;
                 GoalData.GoalTargetAmount = document.getElementById("goalAmount").value;
+                
                 /*
                  * This will be useful, later on.
                  */
@@ -575,16 +590,16 @@
                 {
                 
                     //console.log(GoalData.GoalDescription);
-                    AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"100");
+                    AddNewGoal(GoalData.GoalIcon,GoalData.GoalTitle,GoalData.GoalDescription,"20");
 
-                        /*
-                        * This Code will hide the modal
-                        */
-                        $("#addGoalModal").modal('hide');
 
-                        document.getElementById("goalName").value = "";
-                        document.getElementById("goalDescription").value = "";
-                        document.getElementById("goalAmount").value = "";
+                    ClearAll();
+                    /*
+                     * This Code will hide the modal
+                     */
+                    $("#addGoalModal").modal('hide');
+
+                        
 
                         let divlength = document.getElementById("goal-items").childElementCount;
 
