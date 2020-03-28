@@ -87,7 +87,8 @@
                         <div class="form-row mb-3">
                             <div class="col-2">
                                 <label for="iconSelector">Icon</label>
-                                <button class="btn btn-primary" name="icon" role="iconpicker" id="iconSelector"></button>
+                                <button id="iconPicker" class="btn btn-primary" name="icon" role="iconpicker" id="iconSelector" required></button>
+                                <small class="form-text text-muted">(required)</small>
                             </div>
                             <div class="col">
                                 <!--For goal name input-->
@@ -133,9 +134,8 @@
                             <small class="form-text text-muted">(optional)</small>
                         </div>
 
-
-                  
-
+                
+                     
 
                 </div>
 
@@ -271,7 +271,8 @@
     <!--Required for the iconPicker widget-->
     <script type="text/javascript" src="src/js/bootstrap-iconpicker.bundle.min.js"></script>
 
-
+    <?php include "phpfiles/index_js_files.php";?>
+    
     <!--This line waits for the document to load so all the tooltips will render properly -->
     <script>
         $(document).ready(function () {
@@ -556,6 +557,9 @@
 
         });
     </script>
+
+  
+
 
 </body>
 
