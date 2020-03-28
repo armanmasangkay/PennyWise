@@ -2,7 +2,7 @@
 
 $SERVER_NAME="localhost:3306";
 $DB_USERNAME="root";
-$DB_PASSWORD="";
+$DB_PASSWORD="namra370h55v";
 
 
 function connect(){
